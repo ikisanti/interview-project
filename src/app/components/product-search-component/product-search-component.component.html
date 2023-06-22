@@ -1,0 +1,87 @@
+<div class="m-2">
+    <div class="columns">
+        <div class="column">
+            <a class="button is-danger is-pulled-right" routerLink="/login">Logout</a>
+        </div>
+        <div class="column is-narrow button is-primary is-bordered has-background-primary m-3">
+            <a class="cart-icon" routerLink="/cart">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container is-fluid has-text-centered mb-4">
+    <h1 class="title has-text-white">Buscador de productos</h1>
+    <div class="container is-fluid mb-4">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <a class="button is-primary" routerLink="/home">Ir a Home</a>
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-white">Categoría:</label>
+        <div class="control">
+            <div class="select">
+                <select [(ngModel)]="selectedCategory">
+                    <option value="">Todas</option>
+                    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container is-fluid">
+    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+                <th>Categoría</th>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Marca</th>
+                <th>Precio</th>
+                <th>Detalle Producto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of filteredData">
+                <tr>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.brand }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>
+                        <button class="button is-info" (click)="openModal(item)">Ver detalles</button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal" [ngClass]="{'is-active': selectedProduct}">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <h1 class="title">{{ selectedProduct?.title }}</h1>
+            <p><strong>Categoría:</strong> {{ selectedProduct?.category }}</p>
+            <p><strong>Descripción:</strong> {{ selectedProduct?.description }}</p>
+            <p><strong>ID:</strong> {{ selectedProduct?.id }}</p>
+            <p><strong>Precio:</strong> {{ selectedProduct?.price }}</p>
+            <p><strong>Especificaciones:</strong></p>
+            <ul>
+                <li><strong>Marca:</strong> {{ selectedProduct?.brand }}</li>
+                <li><strong>Display:</strong> {{ selectedProduct?.specifications?.display }}</li>
+                <li><strong>Procesador:</strong> {{ selectedProduct?.specifications?.processor }}</li>
+                <li><strong>Memoria:</strong> {{ selectedProduct?.specifications?.memory }}</li>
+                <li><strong>Almacenamiento:</strong> {{ selectedProduct?.specifications?.storage }}</li>
+                <li><strong>Sistema Operativo:</strong> {{ selectedProduct?.specifications?.operating_system }}</li>
+            </ul>
+            <button class="button is-success" (click)="addToCart(selectedProduct)">Agregar al carrito</button>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="selectedProduct = null"></button>
+</div>

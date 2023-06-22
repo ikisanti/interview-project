@@ -1,0 +1,41 @@
+<div class="container is-flex is-align-items-center m-2">
+    <h1 class="title has-text-white">Carrito de Compras</h1>
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <a class="button is-primary" routerLink="/search">Regresar al comercio</a>
+        </div>
+    </div>
+</div>
+
+<table class="table is-fullwidth is-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Marca</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of cartItems">
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.brand }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">Total:</td>
+            <td>{{ totalPrice }}</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="m-2">
+    <div class="column is-half m-2">
+        <a class="button is-primary" routerLink="/product">Pagar</a>
+    </div>
+</div>

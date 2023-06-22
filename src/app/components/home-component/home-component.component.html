@@ -1,0 +1,56 @@
+<div class="columns">
+  <div class="column m-2">
+    <a href="/profile" class="button is-primary">Profile</a>
+  </div>
+  <div class="column has-text-right m-2">
+    <a href="/login" class="button is-danger">Logout</a>
+  </div>
+</div>
+
+
+
+
+<div class="container is-fluid has-text-centered mb-4">
+  <h1 class="title has-text-white">AxisColCommerce</h1>
+  <h3 class="subtitle has-text-white">Angular App InterviewAxis</h3>
+  <h5 class="subtitle has-text-white"><i>Tecnología que transforma vidas</i></h5>
+  <div class="container is-fluid mb-4">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <a class="button is-primary" routerLink="/search">Ir a la búsqueda</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container is-fluid">
+  <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <th>Categoría</th>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Marca</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let category of getUniqueCategories()">
+        <tr>
+          <td colspan="5" class="is-size-4 has-background-grey-lighter">{{ category }}</td>
+        </tr>
+        <tr *ngFor="let item of apiData">
+          <ng-container *ngIf="item.category === category">
+            <td>{{ item.category }}</td>
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.brand }}</td>
+            <td>{{ item.price }}</td>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+

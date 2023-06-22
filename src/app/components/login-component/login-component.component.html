@@ -1,0 +1,27 @@
+<h1 class="title has-text-white">Ecommerce App</h1>
+<h2>Login</h2>
+<form (ngSubmit)="onSubmit()" class="box">
+  <div class="field">
+    <label for="username" class="label">Username:</label>
+    <div class="control">
+      <input type="text" id="username" name="username" required class="input" [(ngModel)]="username">
+    </div>
+  </div>
+  <div class="field">
+    <label for="password" class="label">Password:</label>
+    <div class="control has-icons-right">
+      <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" required class="input"
+        [(ngModel)]="password">
+      <span class="icon is-small is-right" style="pointer-events: auto;" (click)="togglePasswordVisibility()">
+        <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <button type="submit" class="button is-primary">Login</button>
+    </div>
+  </div>
+  <p class="register-link">¿No estás registrado? <a routerLink="/register">Regístrate</a></p>
+</form>

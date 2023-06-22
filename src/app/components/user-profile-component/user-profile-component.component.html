@@ -1,0 +1,44 @@
+<h1 class="title has-text-white">Profile Page</h1>
+
+<div class="section">
+    <h2 class="subtitle has-text-white">User Information</h2>
+
+    <div class="content">
+        <p>Username: <strong class="has-text-white">{{ user.username }}</strong></p>
+        <p>Password: <strong class="has-text-white">{{ user.password }}</strong></p>
+        <p>Nickname: <strong class="has-text-white">{{ user.nickname }}</strong></p>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="subtitle has-text-white">Additional Information</h2>
+
+    <form (ngSubmit)="saveAdditionalData()">
+        <div class="field">
+            <label class="label has-text-white">Country</label>
+            <div class="control">
+                <input class="input" type="text" [(ngModel)]="additionalData.country" name="country">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label has-text-white">Address</label>
+            <div class="control">
+                <input class="input" type="text" [(ngModel)]="additionalData.address" name="address">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-primary" type="submit">Save</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="content" *ngIf="complementaryData">
+        <h2 class="subtitle has-text-white">Complementary Data</h2>
+        <p>Username: <strong class="has-text-white">{{ complementaryData.username }}</strong></p>
+        <p>Password: <strong class="has-text-white">{{ complementaryData.password }}</strong></p>
+        <p>Nickname: <strong class="has-text-white">{{ complementaryData.nickname }}</strong></p>
+        <p>Country: <strong class="has-text-white">{{ complementaryData.country }}</strong></p>
+        <p>Address: <strong class="has-text-white">{{ complementaryData.address }}</strong></p>
+    </div>
+</div>
